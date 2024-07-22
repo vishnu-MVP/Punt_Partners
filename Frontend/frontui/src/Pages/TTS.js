@@ -1,33 +1,83 @@
-import React from 'react';
-import { Box, Heading, Text, Flex, Button, Icon, Input, Textarea } from '@chakra-ui/react';
-import { FaMagic } from 'react-icons/fa';
+import React, { useState } from "react";
+import { Box, Heading, Text, Button, Textarea } from '@chakra-ui/react';
 
 const TTS = () => {
+  const [text, setText] = useState('');
+  const [audioURL, setAudioURL] = useState('');
+  const [error, setError] = useState('');
+
+  const handleTextChange = (event) => {
+    setText(event.target.value);
+  };
+
+  const handleConvertToSpeech = async () => {
+    try {
+      const formData = new FormData();
+      formData.append('text', text);
+
+      const response = await fetch('http://localhost:8000/text-to-speech/', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok.');
+      }
+
+      const audioBlob = await response.blob();
+      const url = URL.createObjectURL(audioBlob);
+      setAudioURL(url);
+      setError('');
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Failed to convert text to speech.');
+    }
+  };
+
+  const handlePlayAudio = () => {
+    if (audioURL) {
+      const audio = new Audio(audioURL);
+      audio.play();
+    }
+  };
+
   return (
-    <Flex direction="column" minHeight="100vh">
-      <Box bg="teal.700" color="white" py={4} textAlign="center">
-        <Heading as="h1" size="xl">Text to Speech</Heading>
-      </Box>
-      <Flex flex="1" justify="center" align="center" py={8}>
-        <Box flex="1" maxW="container.sm" px={4}>
-          <Heading as="h2" size="md" mb={4}>Input</Heading>
-          <Textarea placeholder="Enter text to convert to speech..." size="lg" />
-        </Box>
-        <Box flex="1" maxW="container.sm" px={4} textAlign="center">
-          <Button size="lg" borderRadius="full" p={8} bg="teal.500" color="white" _hover={{ bg: 'teal.700' }}>
-            <Icon as={FaMagic} w={8} h={8} mr={2} />
-            Abracadabra
-          </Button>
-        </Box>
-        <Box flex="1" maxW="container.sm" px={4}>
-          <Heading as="h2" size="md" mb={4}>Output</Heading>
-          <Textarea placeholder="Audio playback will appear here..." size="lg" isReadOnly />
-        </Box>
-      </Flex>
-      <Box bg="teal.500" color="white" py={4} textAlign="center" mt="auto">
-        <Text>&copy; Project By Vishnu Prasad (125158085)</Text>
-      </Box>
-    </Flex>
+    <Box p={4} maxW="container.sm" mx="auto">
+      <Heading as="h1" size="xl" mb={4}>Text to Speech</Heading>
+      <Textarea
+        value={text}
+        onChange={handleTextChange}
+        placeholder="Kindly enter the text.."
+        size="lg"
+        mb={4}
+      />
+      <Button
+        size="lg"
+        borderRadius="full"
+        p={8}
+        bg="teal.500"
+        color="white"
+        _hover={{ bg: 'teal.700' }}
+        onClick={handleConvertToSpeech}
+        mb={4}
+      >
+        Convert to Speech
+      </Button>
+      {audioURL && (
+        <Button
+          size="lg"
+          borderRadius="full"
+          p={8}
+          bg="teal.500"
+          color="white"
+          _hover={{ bg: 'teal.700' }}
+          onClick={handlePlayAudio}
+        >
+          Play Audio
+        </Button>
+      )}
+      {error && <Text color="red.500" mt={4}>{error}</Text>}
+    </Box>
   );
 };
 

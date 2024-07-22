@@ -20,13 +20,13 @@ function App() {
             <Link as={RouterLink} to="/speech-to-text" _hover={{ textDecoration: 'none' }} m={4} width={{ base: '100%', md: '30%' }}>
               <Box bg="white" borderRadius="md" boxShadow="md" p={6} textAlign="center" _hover={{ boxShadow: 'lg', bg: 'teal.50' }}>
                 <Heading as="h2" size="lg" mb={4}>Speech to Text</Heading>
-                <Text>Auto Language Recognitions From Speech , Unlimited Experiences!</Text>
+                <Text>To be updated</Text>
               </Box>
             </Link>
             <Link as={RouterLink} to="/text-to-speech" _hover={{ textDecoration: 'none' }} m={4} width={{ base: '100%', md: '30%' }}>
               <Box bg="white" borderRadius="md" boxShadow="md" p={6} textAlign="center" _hover={{ boxShadow: 'lg', bg: 'teal.50' }}>
                 <Heading as="h2" size="lg" mb={4}>Text to Speech</Heading>
-                <Text>Auto Language Detection from Text and Convert to Native Speeches With Unlimited Trials.</Text>
+                <Text>To be updated</Text>
               </Box>
             </Link>
           </Flex>
