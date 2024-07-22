@@ -143,7 +143,8 @@ const Translate = () => {
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
   const [loading, setLoading] = useState(false);
-  const [targetLanguage, setTargetLanguage] = useState('de'); // Default target language
+  const [targetLanguage, setTargetLanguage] = useState('de'); 
+  const [detectedLanguage, setDetectedLanguage] = useState('');
 
   const handleTranslate = async () => {
     setLoading(true);
@@ -162,6 +163,10 @@ const Translate = () => {
       }
 
       const result = await res.json();
+
+      const detectedLang = result.DetectedLang[0] || {};
+      console.log(detectedLang)
+      setDetectedLanguage(detectedLang);
       setOutputText(result.translatedText || 'Translation failed.');
     } catch (error) {
       setOutputText(`Error occurred while translating: ${error.message}`);
@@ -178,6 +183,24 @@ const Translate = () => {
       <Flex flex="1" justify="center" align="center" py={8} wrap="wrap">
         <Box flex="1" maxW="container.sm" px={4}>
           <Heading as="h2" size="md" mb={4}>Input</Heading>
+          <Box
+            borderWidth={1}
+            borderRadius="md"
+            p={4}
+            mb={4}
+            bg="gray.100"
+            borderColor="gray.300"
+          >
+            {detectedLanguage ? (
+              <Box>
+                <Text fontWeight="bold">Language: {detectedLanguage.language}</Text>
+                <Text>Reliable: {detectedLanguage.isReliable ? 'Yes' : 'No'}</Text>
+                <Text>Confidence: {detectedLanguage.confidence.toFixed(2)}</Text>
+              </Box>
+            ) : (
+              <Text>Not detected</Text>
+            )}
+          </Box>
           <Textarea
             placeholder="Enter text to translate..."
             size="lg"
