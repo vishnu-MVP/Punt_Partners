@@ -9,8 +9,8 @@ origins = [
 "http://localhost:3000",
 "http://localhost:8000",
 "http://0.0.0.0:10000",
-"https://gm-c0kl.onrender.com" ,
-"https://www.goodmanager.in",
+"https://punt-partners-vishnu.onrender.com" ,
+"https://punt-partners.onrender.com",
 ]
 
 app = FastAPI()
