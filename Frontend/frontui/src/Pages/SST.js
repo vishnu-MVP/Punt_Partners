@@ -37,7 +37,7 @@ const SST = () => {
 
     try {
       
-      const response = await fetch('http://localhost:8000/speech-to-text/', {
+      const response = await fetch('https://punt-partners-vishnu.onrender.com/speech-to-text/', {
         method: 'POST',
         body: formData
       });

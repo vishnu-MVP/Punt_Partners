@@ -149,7 +149,7 @@ const Translate = () => {
   const handleTranslate = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:8000/translate", {
+      const res = await fetch("https://punt-partners-vishnu.onrender.com/translate", {
         method: "POST",
         body: new URLSearchParams({
           q: inputText,

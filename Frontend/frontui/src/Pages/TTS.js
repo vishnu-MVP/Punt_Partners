@@ -15,7 +15,7 @@ const TTS = () => {
       const formData = new FormData();
       formData.append('text', text);
 
-      const response = await fetch('http://localhost:8000/text-to-speech/', {
+      const response = await fetch('https://punt-partners-vishnu.onrender.com/text-to-speech/', {
         method: 'POST',
         body: formData
       });
