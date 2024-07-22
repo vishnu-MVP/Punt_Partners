@@ -1,0 +1,8 @@
+uvicorn
+fastapi
+pyttsx3
+pyttsx4
+speech_recognition
+deep_translator
+detectlanguage
+

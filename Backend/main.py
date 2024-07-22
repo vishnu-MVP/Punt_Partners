@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from motor.motor_asyncio import AsyncIOMotorClient
+
 from routers.features import router as features
 from fastapi.middleware.cors import CORSMiddleware
 
