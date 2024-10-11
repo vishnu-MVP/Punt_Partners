@@ -17,18 +17,7 @@ function App() {
                 <Text> Auto Detect and Translate from/to 100+ Languages Without Any Limits!!</Text>
               </Box>
             </Link>
-            <Link as={RouterLink} to="/speech-to-text" _hover={{ textDecoration: 'none' }} m={4} width={{ base: '100%', md: '30%' }}>
-              <Box bg="white" borderRadius="md" boxShadow="md" p={6} textAlign="center" _hover={{ boxShadow: 'lg', bg: 'teal.50' }}>
-                <Heading as="h2" size="lg" mb={4}>Speech to Text</Heading>
-                <Text>To be updated</Text>
-              </Box>
-            </Link>
-            <Link as={RouterLink} to="/text-to-speech" _hover={{ textDecoration: 'none' }} m={4} width={{ base: '100%', md: '30%' }}>
-              <Box bg="white" borderRadius="md" boxShadow="md" p={6} textAlign="center" _hover={{ boxShadow: 'lg', bg: 'teal.50' }}>
-                <Heading as="h2" size="lg" mb={4}>Text to Speech</Heading>
-                <Text>To be updated</Text>
-              </Box>
-            </Link>
+           
           </Flex>
         </Container>
         <Box bg="teal.500" color="white" py={4} textAlign="center" mt="auto">
